@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝孙颖莎25岁生日快乐！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C879FF', // 淡紫色
+                        secondary: '#9D4EDD', // 深紫色
+                        accent: '#FFD700', // 金色点缀
+                        light: '#F9F5FF', // 淡紫白
+                        dark: '#2A1B3D'  // 深紫黑
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .ping-pong {
+                animation: bounce 2s infinite ease-in-out;
+            }
+            .float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .shine {
+                position: relative;
+                overflow: hidden;
+            }
+            .shine::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    rgba(255, 255, 255, 0) 100%
+                );
+                transform: rotate(30deg);
+                animation: shine 5s infinite;
+            }
+            .timeline-item {
+                position: relative;
+            }
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: -34px;
+                top: 6px;
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: theme('colors.accent');
+                border: 3px solid theme('colors.secondary');
+            }
+            .timeline-line {
+                position: absolute;
+                left: -27px;
+                top: 22px;
+                bottom: -22px;
+                width: 2px;
+                background: theme('colors.secondary/50');
+            }
+            .blur-backdrop {
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            }
+            .card-glow {
+                box-shadow: 0 10px 25px -5px rgba(157, 78, 221, 0.1), 0 8px 10px -6px rgba(157, 78, 221, 0.1);
+            }
+            .card-glow:hover {
+                box-shadow: 0 20px 25px -5px rgba(157, 78, 221, 0.2), 0 10px 10px -5px rgba(157, 78, 221, 0.1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .celebration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .photo-item {
+            transition: all 0.4s ease;
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            z-index: 10;
+        }
+        
+        .message-item {
+            transition: all 0.3s ease;
+        }
+        
+        .message-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .signature {
+            position: absolute;
+            transform: rotate(-10deg) scale(0.8);
+            opacity: 0.8;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+        
+        .signature:hover {
+            transform: rotate(-5deg) scale(1);
+            opacity: 1;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-light via-[#F0E6FF] to-[#E6D9FF] min-h-screen text-dark overflow-x-hidden">
+    <!-- 装饰性元素 -->
+    <div class="fixed -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="fixed -bottom-32 -left-32 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
+    
+    <!-- 顶部导航 -->
+    <nav class="bg-dark/70 blur-backdrop fixed w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-primary ping-pong"></div>
+                <span class="font-bold text-xl text-light">孙颖莎生日祝福</span>
+            </div>
+            <div class="flex gap-4">
+                <button id="toggleMusic" class="p-2 hover:text-primary transition-colors text-light">
+                    <i class="fa fa-music"></i>
+                </button>
+                <button id="toggleInfo" class="p-2 hover:text-primary transition-colors text-light">
+                    <i class="fa fa-info-circle"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 pt-24 pb-16">
+        <!-- 生日标题区 -->
+        <section class="text-center mb-16 mt-8 relative">
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent/5 blur-3xl rounded-full -z-10"></div>
+            
+            <div class="relative inline-block">
+                <div class="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-full opacity-70 float"></div>
+                <div class="absolute -bottom-4 -right-4 w-10 h-10 bg-primary rounded-full opacity-70 float" style="animation-delay: 1s;"></div>
+                
+                <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold mb-4 text-secondary shine text-shadow-lg relative z-10">
+                    25岁生日快乐！
+                </h1>
+                <p class="text-[clamp(1.2rem,4vw,2rem)] text-secondary mb-6 text-shadow relative z-10">致 孙颖莎</p>
+            </div>
+            
+            <div class="flex justify-center items-center gap-4 mt-8">
+                <div class="w-12 h-12 rounded-full bg-white border-2 border-primary ping-pong" style="animation-delay: 0s;"></div>
+                <div class="w-16 h-16 rounded-full bg-white border-2 border-primary ping-pong" style="animation-delay: 0.3s;"></div>
+                <div class="w-20 h-20 rounded-full bg-white border-2 border-primary ping-pong" style="animation-delay: 0.6s;"></div>
+                <div class="w-16 h-16 rounded-full bg-white border-2 border-primary ping-pong" style="animation-delay: 0.9s;"></div>
+                <div class="w-12 h-12 rounded-full bg-white border-2 border-primary ping-pong" style="animation-delay: 1.2s;"></div>
+            </div>
+        </section>
+
+        <!-- 照片展示区 -->
+        <section class="mb-20">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center text-secondary text-shadow">精彩瞬间</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="photo-item rounded-lg overflow-hidden shadow-lg aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <i class="fa fa-table-tennis text-4xl text-secondary/70"></i>
+                </div>
+                <div class="photo-item rounded-lg overflow-hidden shadow-lg aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center" style="grid-row: span 2;">
+                    <i class="fa fa-trophy text-5xl text-secondary/70"></i>
+                </div>
+                <div class="photo-item rounded-lg overflow-hidden shadow-lg aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <i class="fa fa-smile-o text-4xl text-secondary/70"></i>
+                </div>
+                <div class="photo-item rounded-lg overflow-hidden shadow-lg aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center" style="grid-row: span 2;">
+                    <i class="fa fa-flag text-5xl text-secondary/70"></i>
+                </div>
+                <div class="photo-item rounded-lg overflow-hidden shadow-lg aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <i class="fa fa-medal text-4xl text-secondary/70"></i>
+                </div>
+                <div class="photo-item rounded-lg overflow-hidden shadow-lg aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <i class="fa fa-users text-4xl text-secondary/70"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成就时间线 -->
+        <section class="mb-20 relative pl-10 md:pl-16">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-12 text-center text-secondary text-shadow">成长足迹</h2>
+            
+            <div class="timeline-line"></div>
+            
+            <div class="space-y-12">
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp">
+                    <h3 class="text-xl font-bold mb-2 text-secondary flex items-center">
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm mr-3">2017</span>
+                        职业生涯起步
+                    </h3>
+                    <p class="text-gray-700 ml-12">进入国家一队，开始在国际赛事中崭露头角，展现出非凡的乒乓球天赋。</p>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp">
+                    <h3 class="text-xl font-bold mb-2 text-secondary flex items-center">
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm mr-3">2019</span>
+                        首获世界冠军
+                    </h3>
+                    <p class="text-gray-700 ml-12">在世界锦标赛中表现出色，首次获得世界冠军头衔，排名大幅提升。</p>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp">
+                    <h3 class="text-xl font-bold mb-2 text-secondary flex items-center">
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm mr-3">2021</span>
+                        奥运征程
+                    </h3>
+                    <p class="text-gray-700 ml-12">参加东京奥运会，获得女团冠军和女单亚军，成为世界瞩目的乒乓球新星。</p>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp">
+                    <h3 class="text-xl font-bold mb-2 text-secondary flex items-center">
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm mr-3">2023</span>
+                        世界排名第一
+                    </h3>
+                    <p class="text-gray-700 ml-12">凭借稳定的表现登上世界排名第一的位置，成为女子乒坛的领军人物之一。</p>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp">
+                    <h3 class="text-xl font-bold mb-2 text-secondary flex items-center">
+                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm mr-3">2025</span>
+                        25岁新起点
+                    </h3>
+                    <p class="text-gray-700 ml-12">迎来25岁生日，正值职业生涯黄金期，未来可期，继续书写辉煌。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成就展示区 -->
+        <section class="mb-20">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center text-secondary text-shadow">辉煌成就</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white/80 blur-backdrop rounded-xl p-6 border border-primary/30 hover:border-primary/70 transition-all duration-300 transform hover:-translate-y-2 float shadow-md card-glow">
+                    <div class="text-primary text-4xl mb-4"><i class="fa fa-trophy"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-secondary">世界冠军</h3>
+                    <p class="text-gray-700">多次获得世锦赛、世界杯冠军，世界排名稳居前列，展现了强大的实力与稳定的发挥。</p>
+                </div>
+                
+                <div class="bg-white/80 blur-backdrop rounded-xl p-6 border border-primary/30 hover:border-primary/70 transition-all duration-300 transform hover:-translate-y-2 float shadow-md card-glow" style="animation-delay: 0.5s;">
+                    <div class="text-primary text-4xl mb-4"><i class="fa fa-flag-checkered"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-secondary">奥运奖牌</h3>
+                    <p class="text-gray-700">在奥运会赛场上奋勇拼搏，为国家赢得荣誉，展现了顽强的斗志和体育精神。</p>
+                </div>
+                
+                <div class="bg-white/80 blur-backdrop rounded-xl p-6 border border-primary/30 hover:border-primary/70 transition-all duration-300 transform hover:-translate-y-2 float shadow-md card-glow" style="animation-delay: 1s;">
+                    <div class="text-primary text-4xl mb-4"><i class="fa fa-heart"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-secondary">球迷喜爱</h3>
+                    <p class="text-gray-700">凭借精湛的球技和阳光的性格，赢得了无数球迷的喜爱与支持，成为乒乓球界的新星。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 粉丝祝福墙 - 新增交互区域 -->
+        <section class="mb-20 relative">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center text-secondary text-shadow">粉丝祝福墙</h2>
+            
+            <!-- 祝福表单 -->
+            <div class="max-w-2xl mx-auto mb-12 bg-white/90 blur-backdrop rounded-xl p-6 shadow-lg border border-primary/20">
+                <h3 class="text-xl font-bold mb-4 text-secondary">留下你的祝福</h3>
+                <form id="messageForm" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-gray-700 mb-1">你的昵称</label>
+                        <input type="text" id="name" class="w-full px-4 py-2 rounded-lg border border-primary/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="请输入你的昵称" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-1">祝福语</label>
+                        <textarea id="message" rows="3" class="w-full px-4 py-2 rounded-lg border border-primary/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="写下对孙颖莎的生日祝福..." required></textarea>
+                    </div>
+                    <button type="submit" class="bg-secondary hover:bg-secondary/80 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50">
+                        提交祝福
+                    </button>
+                </form>
+            </div>
+            
+            <!-- 祝福列表 -->
+            <div id="messagesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[500px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-primary/30">
+                <!-- 初始祝福示例 -->
+                <div class="message-item bg-white/80 blur-backdrop rounded-lg p-4 shadow-md border border-primary/10">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-secondary">莎迷小星辰</h4>
+                        <span class="text-xs text-gray-500">刚刚</span>
+                    </div>
+                    <p class="text-gray-700">祝莎莎25岁生日快乐！永远支持你，期待更多精彩比赛！</p>
+                </div>
+                
+                <div class="message-item bg-white/80 blur-backdrop rounded-lg p-4 shadow-md border border-primary/10">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-secondary">乒乓球爱好者</h4>
+                        <span class="text-xs text-gray-500">10分钟前</span>
+                    </div>
+                    <p class="text-gray-700">生日快乐！你的拼搏精神一直激励着我，愿你新的一岁再创辉煌！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 粉丝签名墙 - 新增交互区域 -->
+        <section class="mb-20 relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 p-6 border border-primary/20">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center text-secondary text-shadow">粉丝签名墙</h2>
+            
+            <div id="signatureWall" class="relative h-64 md:h-80 bg-white/50 blur-backdrop rounded-xl overflow-hidden border border-primary/20">
+                <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
+                    点击下方按钮，留下你的签名祝福
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <input type="text" id="signatureName" class="px-4 py-2 rounded-lg border border-primary/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all w-full sm:w-auto" placeholder="你的名字">
+                    <button id="addSignature" class="bg-accent hover:bg-accent/80 text-dark font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none">
+                        留下签名
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 祝福区 -->
+        <section class="text-center max-w-3xl mx-auto">
+            <div class="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl p-8 border border-primary/20 shadow-lg relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-white/5 blur-xl"></div>
+                
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6 text-secondary text-shadow relative z-10">生日祝福</h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-800 relative z-10">
+                    亲爱的孙颖莎，在你25岁生日之际，愿你所有的努力都有回报，所有的梦想都能实现。
+                    感谢你在赛场上带来的每一场精彩比赛，每一次奋力拼搏都激励着我们勇往直前。
+                </p>
+                <p class="text-lg leading-relaxed mb-8 text-gray-800 relative z-10">
+                    祝你生日快乐，未来可期！愿你继续在乒乓球的世界里绽放光芒，创造更多辉煌！
+                </p>
+                <button id="celebrateBtn" class="bg-secondary hover:bg-secondary/80 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-50 shadow-md relative z-10">
+                    点击送上祝福
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 信息模态框 -->
+    <div id="infoModal" class="fixed inset-0 bg-black/50 blur-backdrop z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4 transform scale-95 transition-transform duration-300 shadow-xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-secondary">关于孙颖莎</h3>
+                <button id="closeModal" class="text-gray-400 hover:text-secondary">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-4 text-gray-700">
+                <p>孙颖莎，2000年11月4日出生，中国女子乒乓球运动员。</p>
+                <p>她是世界冠军、奥运奖牌获得者，以快速的进攻和灵活的战术著称。</p>
+                <p>在职业生涯中，她多次在国际大赛中取得优异成绩，是中国乒乓球队的重要成员。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark/80 blur-backdrop py-6">
+        <div class="container mx-auto px-4 text-center text-gray-300">
+            <p>祝孙颖莎25岁生日快乐 | 永远支持你！</p>
+            <p class="mt-2 text-sm">2025年11月</p>
+        </div>
+    </footer>
+
+    <script>
+        // 音频元素 - 温馨风格音乐
+        const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3');
+        audio.loop = true;
+        audio.volume = 0.3;
+        
+        // 音乐控制
+        const toggleMusic = document.getElementById('toggleMusic');
+        let isPlaying = false;
+        
+        toggleMusic.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                toggleMusic.innerHTML = '<i class="fa fa-music"></i>';
+            } else {
+                audio.play().catch(e => console.log('自动播放受限，请手动点击播放'));
+                toggleMusic.innerHTML = '<i class="fa fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // 模态框控制
+        const infoModal = document.getElementById('infoModal');
+        const toggleInfo = document.getElementById('toggleInfo');
+        const closeModal = document.getElementById('closeModal');
+        
+        toggleInfo.addEventListener('click', () => {
+            infoModal.classList.remove('opacity-0', 'pointer-events-none');
+            infoModal.querySelector('div').classList.remove('scale-95');
+            infoModal.querySelector('div').classList.add('scale-100');
+        });
+        
+        closeModal.addEventListener('click', () => {
+            infoModal.classList.add('opacity-0', 'pointer-events-none');
+            infoModal.querySelector('div').classList.remove('scale-100');
+            infoModal.querySelector('div').classList.add('scale-95');
+        });
+        
+        infoModal.addEventListener('click', (e) => {
+            if (e.target === infoModal) {
+                closeModal.click();
+            }
+        });
+        
+        // 滚动动画
+        function handleScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            animatedElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight * 0.85 && !element.classList.contains('animated')) {
+                    const animation = element.getAttribute('data-animation');
+                    element.style.animation = `${animation} 0.8s ease forwards`;
+                    element.style.opacity = '0';
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        window.addEventListener('load', handleScrollAnimations);
+        window.addEventListener('scroll', handleScrollAnimations);
+        
+        // 粉丝祝福墙功能
+        const messageForm = document.getElementById('messageForm');
+        const messagesContainer = document.getElementById('messagesContainer');
+        
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            
+            // 创建新祝福元素
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message-item bg-white/80 blur-backdrop rounded-lg p-4 shadow-md border border-primary/10 animate-on-scroll';
+            messageElement.setAttribute('data-animation', 'fadeIn');
+            messageElement.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-bold text-secondary">${name}</h4>
+                    <span class="text-xs text-gray-500">刚刚</span>
+                </div>
+                <p class="text-gray-700">${message}</p>
+            `;
+            
+            // 添加到容器顶部
+            messagesContainer.insertBefore(messageElement, messagesContainer.firstChild);
+            
+            // 清空表单
+            messageForm.reset();
+            
+            // 触发庆祝效果
+            createCelebration(5);
+            
+            // 滚动到顶部
+            messagesContainer.scrollTop = 0;
+        });
+        
+        // 粉丝签名墙功能
+        const signatureWall = document.getElementById('signatureWall');
+        const signatureName = document.getElementById('signatureName');
+        const addSignature = document.getElementById('addSignature');
+        
+        addSignature.addEventListener('click', () => {
+            const name = signatureName.value.trim() || '匿名粉丝';
+            
+            // 创建签名元素
+            const signature = document.createElement('div');
+            signature.className = 'signature';
+            
+            // 随机样式
+            const colors = ['text-secondary', 'text-primary', 'text-accent', 'text-dark/70'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const fontSize = 14 + Math.random() * 12;
+            const rotate = -20 + Math.random() * 40;
+            const left = 10 + Math.random() * 80;
+            const top = 10 + Math.random() * 80;
+            
+            signature.innerHTML = `<span class="${color} font-bold" style="font-size: ${fontSize}px;">${name}</span>`;
+            signature.style.left = `${left}%`;
+            signature.style.top = `${top}%`;
+            signature.style.transform = `rotate(${rotate}deg)`;
+            
+            // 添加到签名墙
+            signatureWall.appendChild(signature);
+            
+            // 清空输入
+            signatureName.value = '';
+            
+            // 触发小庆祝效果
+            createCelebration(3);
+        });
+        
+        // 庆祝效果
+        const celebrateBtn = document.getElementById('celebrateBtn');
+        
+        celebrateBtn.addEventListener('click', () => {
+            if (!isPlaying) {
+                toggleMusic.click();
+            }
+            
+            createCelebration(150);
+            
+            celebrateBtn.textContent = '祝福已送达！';
+            celebrateBtn.classList.add('bg-accent', 'text-dark');
+            celebrateBtn.classList.remove('bg-secondary', 'hover:bg-secondary/80', 'text-white');
+            
+            setTimeout(() => {
+                celebrateBtn.textContent = '再次送上祝福';
+                celebrateBtn.classList.remove('bg-accent', 'text-dark');
+                celebrateBtn.classList.add('bg-secondary', 'hover:bg-secondary/80', 'text-white');
+            }, 2000);
+        });
+        
+        // 创建庆祝元素
+        function createCelebration(count = 100) {
+            for (let i = 0; i < count; i++) {
+                const celebration = document.createElement('div');
+                celebration.classList.add('celebration');
+                
+                const rand = Math.random();
+                if (rand > 0.7) {
+                    // 乒乓球
+                    celebration.innerHTML = `<div class="w-6 h-6 rounded-full ${Math.random() > 0.5 ? 'bg-white border-2 border-primary' : 'bg-primary'} shadow-lg"></div>`;
+                } else if (rand > 0.4) {
+                    // 彩带
+                    const colors = ['bg-primary', 'bg-secondary', 'bg-accent', '#E0B0FF', '#DDA0DD'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    celebration.innerHTML = `<div class="w-1 h-8 ${color}"></div>`;
+                } else if (rand > 0.2) {
+                    // 气球
+                    const colors = ['bg-primary', 'bg-secondary', '#E0B0FF'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    celebration.innerHTML = `<div class="w-6 h-6 rounded-full ${color} shadow-md"></div>`;
+                } else {
+                    // 星星
+                    celebration.innerHTML = `<i class="fa fa-star text-accent text-xl"></i>`;
+                }
+                
+                celebration.style.left = `${Math.random() * 100}vw`;
+                celebration.style.top = `${Math.random() * 100}vh`;
+                
+                const duration = 3 + Math.random() * 4;
+                const delay = Math.random() * 2;
+                
+                celebration.style.animation = `
+                    float ${duration}s ease-in-out ${delay}s forwards,
+                    rotate ${duration}s linear ${delay}s forwards
+                `;
+                
+                document.body.appendChild(celebration);
+                
+                setTimeout(() => {
+                    celebration.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+        
+        // 添加旋转动画样式
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rotate {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background-color: rgba(200, 121, 255, 0.3);
+                border-radius: 3px;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 滚动时导航栏效果
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-lg');
+                nav.classList.remove('py-3');
+            } else {
+                nav.classList.add('py-3');
+                nav.classList.remove('py-2', 'shadow-lg');
+            }
+        });
+        
+        // 页面加载效果
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('opacity-0');
+            setTimeout(() => {
+                document.body.classList.remove('opacity-0');
+                document.body.classList.add('transition-opacity', 'duration-1000', 'opacity-100');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
